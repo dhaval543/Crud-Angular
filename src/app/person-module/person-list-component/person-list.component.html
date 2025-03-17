@@ -1,0 +1,69 @@
+<mat-card>
+
+    <mat-card-title>Persons</mat-card-title>
+
+    <mat-card-content>
+
+        <div class="crud-actions-toolbar">
+            <div>
+                <button mat-icon-button (click)="onAddClick()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>ID</th>
+                <td mat-cell *matCellDef="let element">
+                    <app-clicable-span (clickListener)="onRowClick(element)">
+                        {{element.id}}
+                    </app-clicable-span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="firstName">
+                <th mat-header-cell *matHeaderCellDef>First Name</th>
+                <td mat-cell *matCellDef="let element">
+                    <app-clicable-span (clickListener)="onRowClick(element)">
+                        {{element.firstName}}
+                    </app-clicable-span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lastName">
+                <th mat-header-cell *matHeaderCellDef>Last Name</th>
+                <td mat-cell *matCellDef="let element">
+                    <app-clicable-span (clickListener)="onRowClick(element)">
+                        {{element.lastName}}
+                    </app-clicable-span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="dateOfBirth">
+                <th mat-header-cell *matHeaderCellDef>Date of Birth</th>
+                <td mat-cell *matCellDef="let element">
+                    <app-clicable-span (clickListener)="onRowClick(element)">
+                        {{ element.dateOfBirth | date }}
+                    </app-clicable-span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let item">
+                    <button mat-icon-button (click)="onDeleteClick(item)" matTooltip="Delete">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+    </mat-card-content>
+
+</mat-card>
